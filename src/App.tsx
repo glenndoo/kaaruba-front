@@ -4,6 +4,7 @@ import './App.css';
 import axiosConnection from './functions/axiosConnection';
 import { AxiosResponse } from 'axios';
 import FetchMembers from './admin/FetchMembers';
+import AddMember from './admin/AddMember';
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
       <header className="App-header">
         <ul>
           <FetchMembers />
+          <AddMember />
       </ul>
       </header>
     </div>
