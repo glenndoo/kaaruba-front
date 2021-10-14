@@ -16,6 +16,9 @@ import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 
+
+import TextField from '@mui/material/TextField';
+
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -54,17 +57,68 @@ export default function App() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        <Grid item xs={4}>
-          <Item>
-            <AddMember />
-          </Item>
+        
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <Item>
+              <AddMember />
+            </Item>
+          </Grid>
+          <Grid item xs={4}>
+            <Item>
+              <FetchMembers />
+            </Item>
+
+          </Grid>
+          <Grid item xs={8}>
+            <Item>
+            <div>
+        <TextField
+          required
+          id="outlined-required"
+          label="Required"
+          defaultValue="Hello World"
+        />
+        <TextField
+          disabled
+          id="outlined-disabled"
+          label="Disabled"
+          defaultValue="Hello World"
+        />
+        <TextField
+          id="outlined-password-input"
+          label="Password"
+          type="password"
+          autoComplete="current-password"
+        />
+        <TextField
+          id="outlined-read-only-input"
+          label="Read Only"
+          defaultValue="Hello World"
+          InputProps={{
+            readOnly: true,
+          }}
+        />
+        <TextField
+          id="outlined-number"
+          label="Number"
+          type="number"
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
+        <TextField id="outlined-search" label="Search field" type="search" />
+        <TextField
+          id="outlined-helperText"
+          label="Helper text"
+          defaultValue="Default Value"
+          helperText="Some important text"
+        />
+      </div>
+            </Item>
+          </Grid>
         </Grid>
-        <br/>
-        <Grid item xs={4}>
-          <Item>
-            <FetchMembers />
-          </Item>
-        </Grid>
+
       </TabPanel>
       <TabPanel value={value} index={1}>
         <h1>This is page Two</h1>
