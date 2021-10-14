@@ -6,20 +6,18 @@ import { AxiosResponse } from 'axios';
 import FetchMembers from './admin/FetchMembers';
 import AddMember from './admin/AddMember';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { styled } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Container from '@mui/material/Container';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(1), //grid padding
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-  },
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
 }));
+
 
 function App() {
 
@@ -27,10 +25,17 @@ function App() {
   return(
     <div className="App">
       <header className="App-header">
-        <ul>
-          <AddMember />
-          <FetchMembers />
-      </ul>
+        <Grid item xs>
+          <Item>
+            <AddMember />
+              <hr/>
+            <FetchMembers />
+          </Item>
+        </Grid>
+        <Grid item xs>
+          <Item>
+          </Item>
+        </Grid>
       </header>
     </div>
   );

@@ -8,6 +8,8 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import React, { useEffect, useState } from "react";
 import axiosConnection from "../functions/axiosConnection";
+import { Button, Checkbox, Input, MenuItem } from "@material-ui/core";
+import TextField from '@mui/material/TextField';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -47,7 +49,11 @@ function FetchMembers() {
   useEffect(() => {
     fetchMembers();
   }, []);
+  const [hide, setHide] = useState(false);
 
+    const toggleHide = () => {
+      setHide((oldState) => !oldState);
+    };
   return (
     <div>
       <TableContainer component={Paper}>
@@ -59,6 +65,7 @@ function FetchMembers() {
               <StyledTableCell>Middle Name</StyledTableCell>
               <StyledTableCell>Last Name</StyledTableCell>
               <StyledTableCell>Tax Identification Number</StyledTableCell>
+              <StyledTableCell>Option</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -71,7 +78,25 @@ function FetchMembers() {
                     <StyledTableCell>{member["middle_name"]}</StyledTableCell>
                     <StyledTableCell>{member["last_name"]}</StyledTableCell>
                     <StyledTableCell>{member["tax_identification_number"]}</StyledTableCell>
+                    <StyledTableCell>
+                      <MenuItem>
+                        <Button onClick={toggleHide}></Button>
+                      </MenuItem>
+                      <MenuItem>
+                        <Checkbox onChange={toggleHide} />
+                      </MenuItem>
+                    </StyledTableCell>
                   </StyledTableRow>
+                  {hide && (
+                    <StyledTableRow  key={member["id"]}>
+                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
+                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
+                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
+                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
+                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
+                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
+                    </StyledTableRow>
+                  )}
                 </>
               );
             })}
