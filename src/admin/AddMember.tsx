@@ -4,6 +4,13 @@ import * as Yup from "yup";
 import axiosConnection from "../functions/axiosConnection";
 import FetchMembers from "./FetchMembers";
 import { FormLabel } from "@mui/material";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import { styled } from '@mui/material/styles';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
+import Grid from '@mui/material/Grid';
+
 
 const conn = axiosConnection;
 
@@ -23,9 +30,17 @@ const SignupSchema = Yup.object().shape({
     .required("Tax Identification Number required"),
 });
 
+const Item = styled(Paper)(({ theme }) => ({
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
+
 const AddMember = () => (
   <div>
-    <h1>Register Member</h1>
+    <h3>Register Member</h3>
     <Formik
       initialValues={{
         member_number: "",
@@ -46,34 +61,54 @@ const AddMember = () => (
       }}
     >
       {({ errors, touched }) => (
+
         <Form>
-          <FormLabel>Member Number</FormLabel>
-          <Field name="member_number" />
-          {errors.member_number && touched.member_number ? (
-            <div>{errors.member_number}</div>
-          ) : null}
-          <FormLabel>First Name</FormLabel>
-          <Field name="first_name" label="First Name" />
-          {errors.first_name && touched.first_name ? (
-            <div>{errors.first_name}</div>
-          ) : null}
-          <FormLabel>Middle Name</FormLabel>
-          <Field name="middle_name" />
-          {errors.middle_name && touched.middle_name ? (
-            <div>{errors.middle_name}</div>
-          ) : null}
-          <FormLabel>Last Name</FormLabel>
-          <Field name="last_name" />
-          {errors.last_name && touched.last_name ? (
-            <div>{errors.last_name}</div>
-          ) : null}
-          <FormLabel>Tax Identification Number</FormLabel>
-          <Field name="tax_identification_number" />
-          {errors.tax_identification_number &&
-          touched.tax_identification_number ? (
-            <div>{errors.tax_identification_number}</div>
-          ) : null}
-          <button type="submit">Register Member</button>
+          <Grid container spacing={2}>
+            <Grid item xs={4}>
+              <Item>
+                 <Field className="form-input"  name="first_name" placeholder="First Name"/>
+                {errors.first_name && touched.first_name ? (
+                  <div>{errors.first_name}</div>
+                ) : null}
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <Field className="form-input" name="middle_name" placeholder="Middle Name"/>
+                {errors.middle_name && touched.middle_name ? (
+                  <div>{errors.middle_name}</div>
+                ) : null}
+              </Item>
+            </Grid>
+            <Grid item xs={4}>
+              <Item>
+                <Field className="form-input" name="last_name" placeholder="Last Name"/>
+                {errors.last_name && touched.last_name ? (
+                  <div>{errors.last_name}</div>
+                ) : null}
+              </Item>
+            </Grid>
+            <Grid item xs={5}>
+              <Item>
+                <Field className="form-input" name="member_number" placeholder="Member Number"/>
+                  {errors.member_number && touched.member_number ? (
+                    <div>{errors.member_number}</div>
+                  ) : null}
+              </Item>
+            </Grid>
+            <Grid item xs={5}>
+              <Item>
+                <Field className="form-input" name="tax_identification_number" placeholder="Tax Identification Number"/>
+                {errors.tax_identification_number &&
+                touched.tax_identification_number ? (
+                  <div>{errors.tax_identification_number}</div>
+                ) : null}
+              </Item>
+            </Grid>
+            <Grid item xs={2}>
+                <Button variant="outlined"  size="small" type="submit">Register<br/>Member</Button>
+            </Grid>
+          </Grid>
         </Form>
       )}
     </Formik>

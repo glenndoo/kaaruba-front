@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+.form-input {
+  box-sizing: border-box;
+  height: 39px;
+  width: 100%;
+  border: 1px solid #E6E6E6;
+  border-radius: 20px;
+}

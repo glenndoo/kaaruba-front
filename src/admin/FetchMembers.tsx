@@ -1,14 +1,33 @@
-import {
-  Paper,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-} from "@mui/material";
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
 import React, { useEffect, useState } from "react";
 import axiosConnection from "../functions/axiosConnection";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
 
 function FetchMembers() {
   const conn = axiosConnection;
@@ -35,24 +54,24 @@ function FetchMembers() {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell>Member Number</TableCell>
-              <TableCell>First Name</TableCell>
-              <TableCell>Middle Name</TableCell>
-              <TableCell>Last Name</TableCell>
-              <TableCell>Tax Identification Number</TableCell>
+              <StyledTableCell>Member Number</StyledTableCell>
+              <StyledTableCell>First Name</StyledTableCell>
+              <StyledTableCell>Middle Name</StyledTableCell>
+              <StyledTableCell>Last Name</StyledTableCell>
+              <StyledTableCell>Tax Identification Number</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
             {members.data.map((member) => {
               return (
                 <>
-                  <TableRow key={member["id"]}>
-                    <TableCell>{member["member_number"]}</TableCell>
-                    <TableCell>{member["first_name"]}</TableCell>
-                    <TableCell>{member["middle_name"]}</TableCell>
-                    <TableCell>{member["last_name"]}</TableCell>
-                    <TableCell>{member["tax_identification_number"]}</TableCell>
-                  </TableRow>
+                  <StyledTableRow  key={member["id"]}>
+                    <StyledTableCell>{member["member_number"]}</StyledTableCell>
+                    <StyledTableCell>{member["first_name"]}</StyledTableCell>
+                    <StyledTableCell>{member["middle_name"]}</StyledTableCell>
+                    <StyledTableCell>{member["last_name"]}</StyledTableCell>
+                    <StyledTableCell>{member["tax_identification_number"]}</StyledTableCell>
+                  </StyledTableRow>
                 </>
               );
             })}
