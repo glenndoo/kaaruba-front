@@ -11,6 +11,11 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Container from '@mui/material/Container';
 
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Box from "@material-ui/core/Box";
+import AppBar from "@material-ui/core/AppBar";
+
 const Item = styled(Paper)(({ theme }) => ({
   ...theme.typography.body2,
   padding: theme.spacing(1),
@@ -18,12 +23,61 @@ const Item = styled(Paper)(({ theme }) => ({
   color: theme.palette.text.secondary,
 }));
 
+function TabPanel(props: any) {
+  const { children, value, index, ...other } = props;
+return <div {...other}>{value === index && <Box p={3}>{children}</Box>}</div>;
+}
+function LinkTab(props: any) {
+  return (
+    <Tab
+      component="a"
+      onClick={event => {
+        event.preventDefault();
+      }}
+      {...props}
+    />
+  );
+}
 
-function App() {
-
-
-  return(
-    <div className="App">
+export default function App() {
+  const [value, setValue] = React.useState(0);
+  const handleChange = (event: any, newValue: any) => {
+    setValue(newValue);
+  };
+  return (
+    <div className="Main">
+      <AppBar position="static">
+        <Tabs variant="fullWidth" value={value} onChange={handleChange}>
+          <LinkTab label="Members" href="/foo" />
+          <LinkTab label="Page Two" href="/bar" />
+          <LinkTab label="Page Three" href="/baz" />
+        </Tabs>
+      </AppBar>
+      <TabPanel value={value} index={0}>
+        <Grid item xs={4}>
+          <Item>
+            <AddMember />
+          </Item>
+        </Grid>
+        <br/>
+        <Grid item xs={4}>
+          <Item>
+            <FetchMembers />
+          </Item>
+        </Grid>
+      </TabPanel>
+      <TabPanel value={value} index={1}>
+        <h1>This is page Two</h1>
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        
+        <h1>This is page Three</h1>
+      </TabPanel>
+    </div>
+  );
+}
+/*
+<div className="App">
       <header className="App-header">
         <Grid item xs>
           <Item>
@@ -37,8 +91,4 @@ function App() {
           </Item>
         </Grid>
       </header>
-    </div>
-  );
-}
-
-export default App;
+    </div>*/
