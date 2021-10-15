@@ -36,7 +36,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function FetchMembers(props: { row: ReturnType<typeof createData> }) {
+function FetchMembers() {
   const conn = axiosConnection;
   const [members, setMembers] = useState({ data: [] });
   const [open, setOpen] = React.useState(false);

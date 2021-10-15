@@ -1,112 +1,131 @@
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
-import React, { useEffect, useState } from "react";
-import axiosConnection from "../functions/axiosConnection";
-import { Button, Checkbox, Input, MenuItem } from "@material-ui/core";
+import * as React from 'react';
+import Avatar from '@mui/material/Avatar';
+import Button from '@mui/material/Button';
+import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-import IconButton from '@mui/material/IconButton';
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: theme.palette.common.black,
-    color: theme.palette.common.white,
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-  },
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
-    backgroundColor: theme.palette.action.hover,
-  },
-  // hide last border
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
-
-function FetchMembers() {
-  const conn = axiosConnection;
-  const [members, setMembers] = useState({ data: [] });
-
-  const fetchMembers = async () => {
-    try {
-      await conn.get("fetchMembers").then((response) => {
-        setMembers(response.data);
-        console.log("Fetched: " + members);
-      });
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchMembers();
-  }, []);
-  const [hide, setHide] = useState(false);
-
-    const toggleHide = () => {
-      setHide((oldState) => !oldState);
-    };
+function Copyright(props: any) {
   return (
-    <div>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Member Number</StyledTableCell>
-              <StyledTableCell>First Name</StyledTableCell>
-              <StyledTableCell>Middle Name</StyledTableCell>
-              <StyledTableCell>Last Name</StyledTableCell>
-              <StyledTableCell>Tax Identification Number</StyledTableCell>
-              <StyledTableCell>Option</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {members.data.map((member) => {
-              return (
-                <>
-                  <StyledTableRow  key={member["id"]}>
-                    <StyledTableCell>{member["member_number"]}</StyledTableCell>
-                    <StyledTableCell>{member["first_name"]}</StyledTableCell>
-                    <StyledTableCell>{member["middle_name"]}</StyledTableCell>
-                    <StyledTableCell>{member["last_name"]}</StyledTableCell>
-                    <StyledTableCell>{member["tax_identification_number"]}</StyledTableCell>
-                    <StyledTableCell>
-                      <MenuItem>
-                        <Button onClick={toggleHide}></Button>
-                      </MenuItem>
-                      <MenuItem>
-                        <Checkbox onChange={toggleHide} />
-                      </MenuItem>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                  {hide && (
-                    <StyledTableRow  key={member["id"]}>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                    </StyledTableRow>
-                  )}
-                </>
-              );
-            })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-    </div>
+    <Typography variant="body2" color="text.secondary" align="center" {...props}>
+      {'Copyright © '}
+      <Link color="inherit" href="https://mui.com/">
+        Your Website
+      </Link>{' '}
+      {new Date().getFullYear()}
+      {'.'}
+    </Typography>
   );
 }
 
-export default FetchMembers;
+const theme = createTheme();
+
+export default function SignUp() {
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    // eslint-disable-next-line no-console
+    console.log({
+      email: data.get('email'),
+      password: data.get('password'),
+    });
+  };
+
+  return (
+    <ThemeProvider theme={theme}>
+      <Container component="main" maxWidth="xs">
+        <CssBaseline />
+        <Box
+          sx={{
+            marginTop: 8,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+          }}
+        >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            Login
+          </Avatar>
+          <Typography component="h1" variant="h5">
+            Sign up
+          </Typography>
+          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Grid container spacing={2}>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  autoComplete="given-name"
+                  name="firstName"
+                  required
+                  fullWidth
+                  id="firstName"
+                  label="First Name"
+                  autoFocus
+                />
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="email"
+                  label="Email Address"
+                  name="email"
+                  autoComplete="email"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  name="password"
+                  label="Password"
+                  type="password"
+                  id="password"
+                  autoComplete="new-password"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControlLabel
+                  control={<Checkbox value="allowExtraEmails" color="primary" />}
+                  label="I want to receive inspiration, marketing promotions and updates via email."
+                />
+              </Grid>
+            </Grid>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Sign Up
+            </Button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Link href="#" variant="body2">
+                  Already have an account? Sign in
+                </Link>
+              </Grid>
+            </Grid>
+          </Box>
+        </Box>
+        <Copyright sx={{ mt: 5 }} />
+      </Container>
+    </ThemeProvider>
+  );
+}

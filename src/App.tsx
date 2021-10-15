@@ -54,8 +54,8 @@ export default function App() {
       <AppBar position="static">
         <Tabs variant="fullWidth" value={value} onChange={handleChange}>
           <LinkTab label="Members" href="/foo" />
-          <LinkTab label="Page Two" href="/bar" />
-          <LinkTab label="Page Three" href="/baz" />
+          <LinkTab label="Registration" href="/bar" />
+          <LinkTab label="Login" href="/baz" />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -78,19 +78,19 @@ export default function App() {
         <Grid container spacing={2} alignItems="center" justifyContent="center">
           <Grid item xs={8}>
             <Item>
-              <Login />
-            </Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Item>
               <Registration />
             </Item>
           </Grid>
         </Grid>
       </TabPanel>
       <TabPanel value={value} index={2}>
-        
-        <h1>This is page Three</h1>
+        <Grid container spacing={2} alignItems="center" justifyContent="center">
+          <Grid item xs={8}>
+            <Item>
+              <Login />
+            </Item>
+          </Grid>
+        </Grid>
       </TabPanel>
     </div>
   );
