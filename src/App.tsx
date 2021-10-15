@@ -5,6 +5,8 @@ import axiosConnection from './functions/axiosConnection';
 import { AxiosResponse } from 'axios';
 import FetchMembers from './admin/FetchMembers';
 import AddMember from './admin/AddMember';
+import Login from './LoginRegistration/Login';
+import Registration from './LoginRegistration/Registration';
 
 import { styled } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
@@ -73,7 +75,18 @@ export default function App() {
 
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <h1>This is page Two</h1>
+        <Grid container spacing={2} alignItems="center" justifyContent="center">
+          <Grid item xs={8}>
+            <Item>
+              <Login />
+            </Item>
+          </Grid>
+          <Grid item xs={8}>
+            <Item>
+              <Registration />
+            </Item>
+          </Grid>
+        </Grid>
       </TabPanel>
       <TabPanel value={value} index={2}>
         
