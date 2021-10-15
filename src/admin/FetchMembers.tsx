@@ -10,8 +10,11 @@ import React, { useEffect, useState } from "react";
 import axiosConnection from "../functions/axiosConnection";
 import { Button, Checkbox, Input, MenuItem } from "@material-ui/core";
 import TextField from '@mui/material/TextField';
-
+import Box from '@mui/material/Box';
+import Collapse from '@mui/material/Collapse';
 import IconButton from '@mui/material/IconButton';
+
+import Typography from '@mui/material/Typography';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,9 +36,10 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-function FetchMembers() {
+function FetchMembers(props: { row: ReturnType<typeof createData> }) {
   const conn = axiosConnection;
   const [members, setMembers] = useState({ data: [] });
+  const [open, setOpen] = React.useState(false);
 
   const fetchMembers = async () => {
     try {
@@ -51,11 +55,6 @@ function FetchMembers() {
   useEffect(() => {
     fetchMembers();
   }, []);
-  const [hide, setHide] = useState(false);
-
-    const toggleHide = () => {
-      setHide((oldState) => !oldState);
-    };
   return (
     <div>
       <TableContainer component={Paper}>
@@ -81,24 +80,35 @@ function FetchMembers() {
                     <StyledTableCell>{member["last_name"]}</StyledTableCell>
                     <StyledTableCell>{member["tax_identification_number"]}</StyledTableCell>
                     <StyledTableCell>
-                      <MenuItem>
-                        <Button onClick={toggleHide}></Button>
-                      </MenuItem>
-                      <MenuItem>
-                        <Checkbox onChange={toggleHide} />
-                      </MenuItem>
-                    </StyledTableCell>
+                    <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
+                      {open ? <Button>+</Button> : <Button>-</Button>}
+                    </IconButton>
+                  </StyledTableCell>
                   </StyledTableRow>
-                  {hide && (
-                    <StyledTableRow  key={member["id"]}>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                      <StyledTableCell>THIS LINE WAS HIDDEN</StyledTableCell>
-                    </StyledTableRow>
-                  )}
+                  <StyledTableRow>
+                    <Collapse in={open} timeout="auto" unmountOnExit>
+                      <select>
+                        <option value="" label="Gender" />
+                        <option value="Male" label="Male" />
+                        <option value="Female" label="Female" />
+                        <option value="other" label="other" />
+                      </select>
+                      <select>
+                        <option value="" label="Civil Status" />
+                        <option value="Single" label="Single" />
+                        <option value="Married" label="Married" />
+                        <option value="Separated" label="Separated" />
+                        <option value="Widowed" label="Widowed" />
+                      </select>
+                      <select>
+                        <option value="" label="Religion" />
+                        <option value="A" label="A" />
+                        <option value="B" label="B" />
+                        <option value="C" label="C" />
+                        <option value="D" label="D" />
+                      </select>
+                    </Collapse>
+                  </StyledTableRow>
                 </>
               );
             })}
