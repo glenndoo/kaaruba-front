@@ -1,20 +1,20 @@
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 import React, { useEffect, useState } from "react";
 import axiosConnection from "../functions/axiosConnection";
 import { Button, Checkbox, Input, MenuItem } from "@material-ui/core";
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Collapse from '@mui/material/Collapse';
-import IconButton from '@mui/material/IconButton';
+import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
+import Collapse from "@mui/material/Collapse";
+import IconButton from "@mui/material/IconButton";
 
-import Typography from '@mui/material/Typography';
+import Typography from "@mui/material/Typography";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -27,11 +27,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
@@ -43,8 +43,8 @@ function FetchMembers() {
 
   const fetchMembers = async () => {
     try {
-      await conn.get("fetchMembers").then((response) => {
-        setMembers(response.data);
+      await conn.get("members").then((response) => {
+        setMembers({ data: response.data });
         console.log("Fetched: " + members);
       });
     } catch (error) {
@@ -73,17 +73,23 @@ function FetchMembers() {
             {members.data.map((member) => {
               return (
                 <>
-                  <StyledTableRow  key={member["id"]}>
+                  <StyledTableRow key={member["id"]}>
                     <StyledTableCell>{member["member_number"]}</StyledTableCell>
                     <StyledTableCell>{member["first_name"]}</StyledTableCell>
                     <StyledTableCell>{member["middle_name"]}</StyledTableCell>
                     <StyledTableCell>{member["last_name"]}</StyledTableCell>
-                    <StyledTableCell>{member["tax_identification_number"]}</StyledTableCell>
                     <StyledTableCell>
-                    <IconButton aria-label="expand row" size="small" onClick={() => setOpen(!open)}>
-                      {open ? <Button>+</Button> : <Button>-</Button>}
-                    </IconButton>
-                  </StyledTableCell>
+                      {member["tax_identification_number"]}
+                    </StyledTableCell>
+                    <StyledTableCell>
+                      <IconButton
+                        aria-label="expand row"
+                        size="small"
+                        onClick={() => setOpen(!open)}
+                      >
+                        {open ? <Button>-</Button> : <Button>+</Button>}
+                      </IconButton>
+                    </StyledTableCell>
                   </StyledTableRow>
                   <StyledTableRow>
                     <Collapse in={open} timeout="auto" unmountOnExit>

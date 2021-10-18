@@ -4,12 +4,11 @@ import * as Yup from "yup";
 import axiosConnection from "../functions/axiosConnection";
 import FetchMembers from "./FetchMembers";
 import { FormLabel } from "@mui/material";
-import Button from '@mui/material/Button';
-import { styled } from '@mui/material/styles';
-import Box from '@mui/material/Box';
-import Paper from '@mui/material/Paper';
-import Grid from '@mui/material/Grid';
-
+import Button from "@mui/material/Button";
+import { styled } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Paper from "@mui/material/Paper";
+import Grid from "@mui/material/Grid";
 
 const conn = axiosConnection;
 
@@ -29,7 +28,6 @@ const SignupSchema = Yup.object().shape({
     .required("Tax Identification Number required"),
 });
 
-
 const AddMember = () => (
   <div>
     <h3>Register Member</h3>
@@ -44,52 +42,80 @@ const AddMember = () => (
       validationSchema={SignupSchema}
       onSubmit={async (values) => {
         // same shape as initial values
-        await conn.post("registerMember", { values }).then((response) => {
-          console.log(response);
-          if (response.status == 200) {
-            alert("Member saved!");
-          }
-        });
+        await conn
+          .post("members", {
+            member_number: values.member_number,
+            first_name: values.first_name,
+            middle_name: values.middle_name,
+            last_name: values.last_name,
+            tax_identification_number: values.tax_identification_number,
+          })
+          .then((response) => {
+            console.log(response);
+            if (response.status == 200) {
+              alert("Member saved!");
+            }
+          });
       }}
     >
       {({ errors, touched }) => (
-
         <Form>
           <Grid container spacing={2}>
             <Grid item xs={4}>
-              
-                 <Field className="form-input"  name="first_name" placeholder="First Name"/>
-                {errors.first_name && touched.first_name ? (
-                  <div className="errorMessage">{errors.first_name}</div>
-                ) : null}
+              <Field
+                className="form-input"
+                name="first_name"
+                placeholder="First Name"
+              />
+              {errors.first_name && touched.first_name ? (
+                <div className="errorMessage">{errors.first_name}</div>
+              ) : null}
             </Grid>
             <Grid item xs={4}>
-                <Field className="form-input" name="middle_name" placeholder="Middle Name"/>
-                {errors.middle_name && touched.middle_name ? (
-                  <div>{errors.middle_name}</div>
-                ) : null}
+              <Field
+                className="form-input"
+                name="middle_name"
+                placeholder="Middle Name"
+              />
+              {errors.middle_name && touched.middle_name ? (
+                <div>{errors.middle_name}</div>
+              ) : null}
             </Grid>
             <Grid item xs={4}>
-                <Field className="form-input" name="last_name" placeholder="Last Name"/>
-                {errors.last_name && touched.last_name ? (
-                  <div>{errors.last_name}</div>
-                ) : null}
+              <Field
+                className="form-input"
+                name="last_name"
+                placeholder="Last Name"
+              />
+              {errors.last_name && touched.last_name ? (
+                <div>{errors.last_name}</div>
+              ) : null}
             </Grid>
             <Grid item xs>
-                <Field className="form-input" name="member_number" placeholder="Member Number"/>
-                  {errors.member_number && touched.member_number ? (
-                    <div>{errors.member_number}</div>
-                  ) : null}
+              <Field
+                className="form-input"
+                name="member_number"
+                placeholder="Member Number"
+              />
+              {errors.member_number && touched.member_number ? (
+                <div>{errors.member_number}</div>
+              ) : null}
             </Grid>
             <Grid item xs>
-                <Field className="form-input" name="tax_identification_number" placeholder="Tax Identification Number"/>
-                {errors.tax_identification_number &&
-                touched.tax_identification_number ? (
-                  <div>{errors.tax_identification_number}</div>
-                ) : null}
+              <Field
+                className="form-input"
+                name="tax_identification_number"
+                placeholder="Tax Identification Number"
+              />
+              {errors.tax_identification_number &&
+              touched.tax_identification_number ? (
+                <div>{errors.tax_identification_number}</div>
+              ) : null}
             </Grid>
             <Grid item xs={2}>
-                <Button variant="contained"  size="small" type="submit">Register Member</Button>
+              <Button variant="contained" size="small" type="submit">
+                Register Member
+              </Button>
             </Grid>
           </Grid>
         </Form>
