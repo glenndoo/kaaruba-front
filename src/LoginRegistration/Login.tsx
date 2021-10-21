@@ -49,7 +49,13 @@ export default function SignIn() {
         password: data.get("password"),
       })
       .then((response) => {
-        console.log(response.data);
+        if (response.status === 200) {
+          console.log(response.data);
+        } else if (response.status === 201) {
+          alert("Invalid credentials");
+        } else {
+          alert("Server error");
+        }
       });
   };
 
