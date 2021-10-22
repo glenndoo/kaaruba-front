@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import logo from "./logo.svg";
-import "./App.css";
 import axiosConnection from "./functions/axiosConnection";
 import { AxiosResponse } from "axios";
 import FetchMembers from "./admin/FetchMembers";
@@ -9,17 +8,14 @@ import Login from "./LoginRegistration/Login";
 import Registration from "./LoginRegistration/Registration";
 import TemplateFooter from "./components/TemplateFooter";
 import TemplateHeader from "./components/TemplateHeader";
-
 import { styled } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import Grid from "@material-ui/core/Grid";
 import Container from "@mui/material/Container";
-
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
-
 import TextField from "@mui/material/TextField";
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import "../App.css";
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -47,7 +48,7 @@ export default function AddMember() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <div className="Main">
       <Button variant="contained" onClick={handleOpen}>+Member</Button>
       <Modal  className="modal-size" open={open} onClose={handleClose} aria-labelledby="modal-modal-title"aria-describedby="modal-modal-description">
         <Box sx={style} >

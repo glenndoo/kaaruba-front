@@ -1,4 +1,5 @@
 import * as React from 'react';
+import "../App.css";
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 import Button from '@mui/material/Button';

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import "../App.css";
 import BottomNavigation from '@mui/material/BottomNavigation';
 import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
@@ -12,7 +13,7 @@ export default function TemplateFooter() {
   };
 
   return (
-    <footer id="footer" className="fixed-bottom">
+    <footer id="footer" className="fixed-bottom" style={{color: "gray", position: "fixed", bottom: 0}}>
       <div className="container">
         <div className="copyright">
           &copy; Copyright <strong><span>Kaaruba Transport Group Cooperative</span></strong>. All Rights Reserved
