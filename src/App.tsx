@@ -7,6 +7,8 @@ import FetchMembers from "./admin/FetchMembers";
 import AddMember from "./admin/AddMember";
 import Login from "./LoginRegistration/Login";
 import Registration from "./LoginRegistration/Registration";
+import TemplateFooter from "./components/TemplateFooter";
+import TemplateHeader from "./components/TemplateHeader";
 
 import { styled } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
@@ -62,39 +64,8 @@ export default function App() {
   };
   return (
     <div className="Main">
+      <TemplateHeader />
       <AppBar position="static">
-        <section id="topbar" className="d-flex align-items-center">
-          <div className="container d-flex justify-content-center justify-content-md-between">
-            <div className="contact-info d-flex align-items-center">
-              <i className="bi bi-envelope-fill"></i><a href="mailto:contact@example.com">info@example.com</a>
-              <i className="bi bi-phone-fill phone-icon"></i> for questions call kaauraba @+1 5589 55488 55
-              
-              <b> Loggedin as</b>
-              <Button id="demo-positioned-button" aria-controls="demo-positioned-menu" aria-haspopup="true" aria-expanded={open ? 'true' : undefined} onClick={handleClick}>
-                John Doe (Admin)
-              </Button>
-              <Menu
-                id="demo-positioned-menu"
-                aria-labelledby="demo-positioned-button"
-                anchorEl={anchorEl}
-                open={open}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-              >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={handleClose}>Logout</MenuItem>
-              </Menu>
-            </div>
-          </div>
-        </section>
         <header id="header" className="d-flex align-items-center">
           <div className="container d-flex align-items-center justify-content-between">
             <nav id="navbar" className="navbar">
@@ -139,33 +110,7 @@ export default function App() {
           </Grid>
         </Grid>
       </TabPanel>
-      <footer id="footer" className="fixed-bottom">
-        <div className="container">
-          <div className="copyright">
-            &copy; Copyright <strong><span>Kaaruba Transport Group Cooperative</span></strong>. All Rights Reserved
-          </div>
-          <div className="credits">
-
-            Designed by <a href="/">GDMR</a>
-          </div>
-        </div>
-      </footer>
+      <TemplateFooter />
     </div>
   );
 }
-/*
-<div className="App">
-      <header className="App-header">
-        <Grid item xs>
-          <Item>
-            <AddMember />
-              <hr/>
-            <FetchMembers />
-          </Item>
-        </Grid>
-        <Grid item xs>
-          <Item>
-          </Item>
-        </Grid>
-      </header>
-    </div>*/
