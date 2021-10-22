@@ -52,11 +52,33 @@ export default function App() {
   return (
     <div className="Main">
       <AppBar position="static">
-        <Tabs variant="fullWidth" value={value} onChange={handleChange}>
+        <section id="topbar" className="d-flex align-items-center">
+          <div className="container d-flex justify-content-center justify-content-md-between">
+            <div className="contact-info d-flex align-items-center">
+              <i className="bi bi-envelope-fill"></i><a href="mailto:contact@example.com">info@example.com</a>
+              <i className="bi bi-phone-fill phone-icon"></i> +1 5589 55488 55
+            </div>
+            <div className="social-links d-none d-md-block">
+              <a href="#" className="twitter"><i className="bi bi-twitter"></i></a>
+              <a href="#" className="facebook"><i className="bi bi-facebook"></i></a>
+              <a href="#" className="instagram"><i className="bi bi-instagram"></i></a>
+              <a href="#" className="linkedin"><i className="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </section>
+        <header id="header" className="d-flex align-items-center">
+          <div className="container d-flex align-items-center justify-content-between">
+            <nav id="navbar" className="navbar">
+              
+        <Tabs value={value} onChange={handleChange}>
           <LinkTab label="Members" href="/foo" />
           <LinkTab label="Registration" href="/bar" />
           <LinkTab label="Login" href="/baz" />
         </Tabs>
+            </nav>
+
+          </div>
+        </header>
       </AppBar>
       <TabPanel value={value} index={0}>
         <Grid container spacing={2} alignItems="center" justifyContent="center">
@@ -90,6 +112,17 @@ export default function App() {
           </Grid>
         </Grid>
       </TabPanel>
+      <footer id="footer" className="fixed-bottom">
+        <div className="container">
+          <div className="copyright">
+            &copy; Copyright <strong><span>Kaaruba Transport Group Cooperative</span></strong>. All Rights Reserved
+          </div>
+          <div className="credits">
+
+            Designed by <a href="/">GDMR</a>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 }
