@@ -69,14 +69,12 @@ export default function App() {
         <header id="header" className="d-flex align-items-center">
           <div className="container d-flex align-items-center justify-content-between">
             <nav id="navbar" className="navbar">
-              
-        <Tabs value={value} onChange={handleChange}>
-          <LinkTab label="Members" href="/foo" />
-          <LinkTab label="Registration" href="/bar" />
-          <LinkTab label="Login" href="/baz" />
-        </Tabs>
+              <Tabs value={value} onChange={handleChange}>
+                <LinkTab label="Members" href="/foo" />
+                <LinkTab label="Registration" href="/bar" />
+                <LinkTab label="Members" href="/baz" />
+              </Tabs>
             </nav>
-
           </div>
         </header>
       </AppBar>
@@ -84,12 +82,7 @@ export default function App() {
         <Grid container spacing={2} alignItems="center" justifyContent="center">
           <Grid item xs={8}>
             <Item>
-              <AddMember />
-            </Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Item>
-              <FetchMembers />
+              <Login />
             </Item>
           </Grid>
         </Grid>
@@ -107,7 +100,12 @@ export default function App() {
         <Grid container spacing={2} alignItems="center" justifyContent="center">
           <Grid item xs={8}>
             <Item>
-              <Login />
+              <AddMember />
+            </Item>
+          </Grid>
+          <Grid item xs={8}>
+            <Item>
+              <FetchMembers />
             </Item>
           </Grid>
         </Grid>
