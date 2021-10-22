@@ -28,7 +28,7 @@ export default function TemplateFooter() {
       <div className="container d-flex justify-content-center justify-content-md-between">
         <div className="contact-info d-flex align-items-center">
           <i className="bi bi-envelope-fill"></i><a href="mailto:contact@example.com">info@example.com</a>
-          <i className="bi bi-phone-fill phone-icon"></i> for questions call kaauraba @+1 5589 55488 55
+          <i className="bi bi-phone-fill phone-icon"></i>Hotline: +1 5589 55488 55
           
           <b> Loggedin as</b>
           <Button id="demo-positioned-button" aria-controls="demo-positioned-menu" aria-haspopup="true" aria-expanded={open ? 'true' : undefined} onClick={handleClick}>

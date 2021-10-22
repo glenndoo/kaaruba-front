@@ -96,11 +96,8 @@ export default function App() {
         <Grid container spacing={2} alignItems="center" justifyContent="center">
           <Grid item xs={8}>
             <Item>
+              
               <AddMember />
-            </Item>
-          </Grid>
-          <Grid item xs={8}>
-            <Item>
               <FetchMembers />
             </Item>
           </Grid>
