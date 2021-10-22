@@ -66,8 +66,8 @@ export default function App() {
           <div className="container d-flex align-items-center justify-content-between">
             <nav id="navbar" className="navbar">
               <Tabs value={value} onChange={handleChange}>
-                <LinkTab label="Members" href="/foo" />
-                <LinkTab label="Registration" href="/bar" />
+                <LinkTab label="Login" href="/foo" />
+                <LinkTab label="Register" href="/bar" />
                 <LinkTab label="Members" href="/baz" />
               </Tabs>
             </nav>
@@ -96,7 +96,6 @@ export default function App() {
         <Grid container spacing={2} alignItems="center" justifyContent="center">
           <Grid item xs={8}>
             <Item>
-              
               <AddMember />
               <FetchMembers />
             </Item>
